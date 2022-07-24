@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme/app_colors.dart';
-import '../../../widgets/my_network_image.dart';
+import '../../../../../theme/app_colors.dart';
+import '../../../../../widgets/my_network_image.dart';
 import 'package:app_music/src/domain/models/genre.dart';
 import 'package:app_music/src/ui/utils/responsive.dart';
 

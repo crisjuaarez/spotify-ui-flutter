@@ -13,4 +13,6 @@ class AppColors {
   static const Color pink = CupertinoColors.systemPink;
   static const Color brown = Colors.brown;
   static const Color orange = CupertinoColors.activeOrange;
+  static const Color yellow = CupertinoColors.systemYellow;
+  static const Color purple = CupertinoColors.systemPurple;
 }
