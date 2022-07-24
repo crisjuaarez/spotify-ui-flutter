@@ -20,7 +20,7 @@ class _HomePageViewState extends State<HomePageView> {
   @override
   void initState() {
     super.initState();
-    _pageCtrl = PageController(initialPage: 1);
+    _pageCtrl = PageController();
   }
 
   @override
@@ -37,12 +37,14 @@ class _HomePageViewState extends State<HomePageView> {
         children: [
           PageView(
             controller: _pageCtrl,
+            physics: const NeverScrollableScrollPhysics(),
             children: const [
               HomeView(),
               SearchView(),
               LibraryView(),
             ],
           ),
+          //BottomNavigationBar right here for the transparency
           Positioned(bottom: 0, child: HomeNavBar(pageController: _pageCtrl)),
         ],
       ),

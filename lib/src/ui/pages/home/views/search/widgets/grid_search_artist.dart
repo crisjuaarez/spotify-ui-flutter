@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:app_music/src/domain/models/genre.dart';
+import 'package:app_music/src/domain/models/artist.dart';
 import 'package:app_music/src/ui/theme/app_colors.dart';
 import 'package:app_music/src/ui/utils/responsive.dart';
 
-import 'genre_card_widget.dart';
+import 'artist_card_widget.dart';
 
 class GridSearchArtist extends StatelessWidget {
   const GridSearchArtist({Key? key}) : super(key: key);
@@ -12,9 +12,9 @@ class GridSearchArtist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive.of(context);
-    final double genreHeight = responsive.hp(15);
+    final double artistHeight = responsive.hp(12.5);
     final double gridHeight =
-        (genreHeight + 12) * genres.length / 2 + kBottomNavigationBarHeight;
+        (artistHeight + 12) * artists.length / 2 + kBottomNavigationBarHeight;
     return Expanded(
       child: RawScrollbar(
         trackColor: AppColors.grey,
@@ -44,10 +44,10 @@ class GridSearchArtist extends StatelessWidget {
                     crossAxisCount: 2,
                     mainAxisSpacing: 12,
                     crossAxisSpacing: 12,
-                    mainAxisExtent: genreHeight,
+                    mainAxisExtent: artistHeight,
                   ),
-                  itemCount: genres.length,
-                  itemBuilder: (_, i) => GenreCardWidget(genres[i]),
+                  itemCount: artists.length,
+                  itemBuilder: (_, i) => ArtistCardWidget(artists[i]),
                 ),
               ),
             ],

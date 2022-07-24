@@ -1,4 +1,4 @@
-import 'package:app_music/src/domain/models/genre.dart';
+import 'package:app_music/src/domain/models/artist.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_music/src/ui/theme/app_colors.dart';
@@ -13,6 +13,10 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive.of(context);
     final double playlistTileHeight = responsive.hp(8);
+
+    List<Artist> artistsShuffle = [...artists];
+    artistsShuffle.shuffle();
+
     return Container(
       height: responsive.height,
       width: responsive.width,
@@ -32,121 +36,184 @@ class HomeView extends StatelessWidget {
           horizontal: responsive.wp(4),
           vertical: responsive.hp(4),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Good evening',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: responsive.dp(2.5),
-                  ),
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.notifications_outlined,
-                    color: AppColors.white,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.watch_later_outlined,
-                    color: AppColors.white,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.settings_outlined,
-                    color: AppColors.white,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: responsive.hp(25),
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  mainAxisExtent: playlistTileHeight,
-                ),
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 4,
-                itemBuilder: (_, i) {
-                  final playlist = playlists[i];
-                  return Container(
-                    width: responsive.wp(40),
-                    decoration: BoxDecoration(
-                      color: Colors.white10,
-                      borderRadius: BorderRadius.circular(5),
+        child: SafeArea(
+          bottom: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'Good evening',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: responsive.dp(2.5),
                     ),
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(5),
-                            bottomLeft: Radius.circular(5),
-                          ),
-                          child: MyNetworkImage(
-                            playlist.image,
-                            height: playlistTileHeight,
-                            width: playlistTileHeight,
-                          ),
-                        ),
-                        SizedBox(width: responsive.wp(1.5)),
-                        Text(
-                          playlist.title,
-                          style: const TextStyle(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.notifications_outlined,
+                      color: AppColors.white,
                     ),
-                  );
-                },
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.watch_later_outlined,
+                      color: AppColors.white,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.settings_outlined,
+                      color: AppColors.white,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Text(
-              'Recently played',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: responsive.dp(2.5),
-              ),
-            ),
-            SizedBox(
-              height: (responsive.wp(45) + 12) * genres.length / 2 +
-                  kBottomNavigationBarHeight,
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisExtent: responsive.wp(45),
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
+              SizedBox(
+                height: responsive.hp(20),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    mainAxisExtent: playlistTileHeight,
+                  ),
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 4,
+                  itemBuilder: (_, i) {
+                    final playlist = playlists[i];
+                    return Container(
+                      width: responsive.wp(40),
+                      decoration: BoxDecoration(
+                        color: Colors.white10,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              bottomLeft: Radius.circular(5),
+                            ),
+                            child: MyNetworkImage(
+                              playlist.image,
+                              height: playlistTileHeight,
+                              width: playlistTileHeight,
+                            ),
+                          ),
+                          SizedBox(width: responsive.wp(1.5)),
+                          Text(
+                            playlist.title,
+                            style: const TextStyle(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-                itemCount: genres.length,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (_, i) {
-                  final genre = genres[i];
-                  return MyNetworkImage(
-                    genre.image,
-                    height: responsive.wp(45),
-                    width: responsive.wp(45),
-                  );
-                },
               ),
-            ),
-          ],
+              Text(
+                'Recently played',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: responsive.dp(2.5),
+                ),
+              ),
+              SizedBox(height: responsive.hp(2)),
+              SizedBox(
+                height: responsive.hp(25),
+                width: responsive.width,
+                child: ListView.separated(
+                  itemCount: artists.length,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (_, i) {
+                    final artist = artists[i];
+                    return MyNetworkImage(
+                      artist.image,
+                      height: responsive.wp(45),
+                      width: responsive.wp(45),
+                    );
+                  },
+                  separatorBuilder: (_, __) => SizedBox(
+                    width: responsive.wp(4),
+                  ),
+                ),
+              ),
+              SizedBox(height: responsive.hp(2)),
+              Text(
+                'Your top mixes',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: responsive.dp(2.5),
+                ),
+              ),
+              SizedBox(height: responsive.hp(2)),
+              SizedBox(
+                height: responsive.hp(25),
+                width: responsive.width,
+                child: ListView.separated(
+                  itemCount: artists.length,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (_, i) {
+                    final artist = artistsShuffle[i];
+                    return MyNetworkImage(
+                      artist.image,
+                      height: responsive.wp(45),
+                      width: responsive.wp(45),
+                    );
+                  },
+                  separatorBuilder: (_, __) => SizedBox(
+                    width: responsive.wp(4),
+                  ),
+                ),
+              ),
+              SizedBox(height: responsive.hp(2)),
+              Text(
+                'For you',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: responsive.dp(2.5),
+                ),
+              ),
+              SizedBox(height: responsive.hp(2)),
+              SizedBox(
+                height: responsive.hp(25),
+                width: responsive.width,
+                child: ListView.separated(
+                  itemCount: artists.length,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (_, i) {
+                    final Artist artist = artists.reversed.toList()[i];
+                    return MyNetworkImage(
+                      artist.image,
+                      height: responsive.wp(45),
+                      width: responsive.wp(45),
+                    );
+                  },
+                  separatorBuilder: (_, __) => SizedBox(
+                    width: responsive.wp(4),
+                  ),
+                ),
+              ),
+              const SizedBox(height: kBottomNavigationBarHeight),
+            ],
+          ),
         ),
       ),
     );
