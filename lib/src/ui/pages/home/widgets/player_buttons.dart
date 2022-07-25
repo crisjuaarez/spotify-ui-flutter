@@ -6,15 +6,12 @@ class PlayerButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double buttonSize = 40;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Icon(Icons.swap_calls, color: AppColors.white, size: 30),
-        const Icon(
-          Icons.skip_previous,
-          color: AppColors.white,
-          size: 30,
-        ),
+        const Icon(Icons.swap_calls, size: buttonSize),
+        const Icon(Icons.skip_previous, size: buttonSize),
         Container(
           height: 60,
           width: 60,
@@ -25,19 +22,11 @@ class PlayerButtons extends StatelessWidget {
           child: const Icon(
             Icons.play_arrow,
             color: AppColors.black,
-            size: 30,
+            size: buttonSize,
           ),
         ),
-        const Icon(
-          Icons.skip_next,
-          color: AppColors.white,
-          size: 30,
-        ),
-        const Icon(
-          Icons.repeat,
-          color: AppColors.white,
-          size: 30,
-        ),
+        const Icon(Icons.skip_next, size: buttonSize),
+        const Icon(Icons.repeat, size: buttonSize),
       ],
     );
   }

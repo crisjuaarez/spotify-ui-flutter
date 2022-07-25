@@ -20,7 +20,10 @@ class SearchField extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const Expanded(flex: 2, child: Icon(AppIcons.search)),
+          const Expanded(
+            flex: 2,
+            child: Icon(AppIcons.search, color: AppColors.black),
+          ),
           Expanded(
             flex: 8,
             child: Text(
@@ -28,6 +31,7 @@ class SearchField extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: responsive.dp(2),
+                color: AppColors.black,
               ),
             ),
           ),

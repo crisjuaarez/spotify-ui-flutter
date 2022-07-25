@@ -1,3 +1,4 @@
+import 'package:app_music/src/ui/widgets/responsive_separator.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_music/src/ui/utils/responsive.dart';
@@ -21,10 +22,10 @@ class SearchView extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SearchField(),
-              SizedBox(height: responsive.hp(2)),
-              const GridSearchArtist(),
+            children: const [
+              SearchField(),
+              ResponsiveSeparator(heightPercent: 2),
+              GridSearchArtist(),
             ],
           ),
         ),

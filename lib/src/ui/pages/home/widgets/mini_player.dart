@@ -9,38 +9,66 @@ class MiniPlayer extends StatelessWidget {
   const MiniPlayer({
     Key? key,
     required this.song,
-    required this.draggableScrollableController,
   }) : super(key: key);
 
   final Song song;
-  final DraggableScrollableController draggableScrollableController;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: Responsive.of(context).hp(10),
+    final Responsive responsive = Responsive.of(context);
+
+    return Container(
+      height: responsive.hp(8.5),
       width: double.infinity,
-      child: ListTile(
-        onTap: () => draggableScrollableController.animateTo(
-          1,
-          duration: const Duration(milliseconds: 350),
-          curve: Curves.ease,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            song.color.withOpacity(0.25),
+            song.color.withOpacity(0.20),
+          ],
         ),
-        leading: MyNetworkImage(
-          song.image,
-          height: 55,
-          width: 55,
-        ),
-        title: Text(
-          '${song.name} · ${song.artistName}',
-          style: const TextStyle(
-            color: AppColors.white,
+      ),
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: responsive.wp(4)),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Material(
+              elevation: 12,
+              child: MyNetworkImage(
+                song.image,
+                height: responsive.hp(5),
+                width: responsive.hp(5),
+              ),
+            ),
           ),
-        ),
-        trailing: const Icon(
-          Icons.play_arrow,
-          color: AppColors.white,
-        ),
+          SizedBox(width: responsive.wp(2)),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                song.name,
+                style: TextStyle(fontSize: responsive.dp(2)),
+              ),
+              Text(
+                song.artistName,
+                style: TextStyle(
+                  color: AppColors.grey,
+                  fontSize: responsive.dp(1.5),
+                ),
+              ),
+            ],
+          ),
+          const Spacer(),
+          const Icon(Icons.play_arrow),
+        ],
       ),
     );
   }
