@@ -17,6 +17,7 @@ class _HomeNavBarState extends State<HomeNavBar> {
   @override
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive.of(context);
+
     final currentIndex = widget.pageController.page == null
         ? 1
         : widget.pageController.page!.toInt();

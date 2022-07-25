@@ -9,7 +9,7 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color blue = CupertinoColors.activeBlue;
   static const Color red = CupertinoColors.systemRed;
-  static const Color green = Colors.green;
+  static const Color green = CupertinoColors.activeGreen;
   static const Color pink = CupertinoColors.systemPink;
   static const Color brown = Colors.brown;
   static const Color orange = CupertinoColors.activeOrange;

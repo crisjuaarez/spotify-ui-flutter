@@ -7,8 +7,6 @@ class Playlist {
   final String title;
   final String description;
   final String image;
-  // final List<Song> songs;
-
 }
 
 const playlists = <Playlist>[
