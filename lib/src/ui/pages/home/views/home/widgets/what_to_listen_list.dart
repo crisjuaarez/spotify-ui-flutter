@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_this
-
 import 'package:flutter/material.dart';
 import 'package:app_music/src/domain/models/artist.dart';
 import 'package:app_music/src/ui/utils/responsive.dart';
@@ -32,11 +30,11 @@ class WhatToListenList extends StatelessWidget {
           height: responsive.wp(35),
           width: responsive.width,
           child: ListView.separated(
-            itemCount: this.artists.length,
+            itemCount: artists.length,
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (_, i) {
-              final Artist artist = this.artists[i];
+              final Artist artist = artists[i];
               return MyNetworkImage(
                 artist.image,
                 height: responsive.wp(35),

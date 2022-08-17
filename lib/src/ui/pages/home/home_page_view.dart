@@ -34,7 +34,7 @@ class _HomePageViewState extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.black,
+      backgroundColor: AppColors.backgroundColor,
       bottomNavigationBar: const HomeNavBar(),
       body: Stack(
         children: [
