@@ -1,6 +1,6 @@
-# app_music
+# Spotify UI Clone
 
-A new Flutter project.
+Made with Flutter
 
 ## Getting Started
 
